@@ -12,11 +12,9 @@ class Asset
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
     #[ORM\Column(length: 100)]
     private ?string $name = null;
-
-    #[ORM\Column(length: 10)]
+    #[ORM\Column(length: 20, unique: true)]
     private ?string $symbol = null;
 
     public function getId(): ?int
@@ -44,7 +42,6 @@ class Asset
     public function setSymbol(string $symbol): static
     {
         $this->symbol = $symbol;
-
         return $this;
     }
 }

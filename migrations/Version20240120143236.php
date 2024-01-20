@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240120141816 extends AbstractMigration
+final class Version20240120143236 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,13 +20,13 @@ final class Version20240120141816 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE asset ALTER symbol TYPE VARCHAR(20)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_2AF5A5CECC836F9 ON asset (symbol)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('ALTER TABLE asset ALTER symbol TYPE VARCHAR(20)');
+        $this->addSql('DROP INDEX UNIQ_2AF5A5CECC836F9');
     }
 }
