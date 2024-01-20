@@ -21,14 +21,14 @@ services:
   db:
     image: postgres:16-alpine
     ports:
-      - 5432:5432 # On expose le port pour pouvoir inspecter la base pendant la phase de développement
+      - 54321:5432 # On expose le port pour pouvoir inspecter la base pendant la phase de développement
     environment:
-      POSTGRES_PASSWORD: bokyo
-      POSTGRES_USER: bokyo
-      POSTGRES_DB: bokyo
+      POSTGRES_DB: ${POSTGRES_DB:-bokyo}
+        # You should definitely change the password in production
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-bokyo}
+      POSTGRES_USER: ${POSTGRES_USER:-bokyo}
       TZ: Europe/Paris
       PGTZ: Europe/Paris
     volumes:
-      - ./docker/db/data:/var/lib/postgresql/data
+      - ./var/db:/var/lib/postgresql/data
       - ./var:/var/www/var
-
