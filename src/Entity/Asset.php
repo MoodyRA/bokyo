@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AssetRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AssetRepository::class)]
@@ -14,8 +15,11 @@ class Asset
     private ?int $id = null;
     #[ORM\Column(length: 100)]
     private ?string $name = null;
-    #[ORM\Column(length: 20, unique: true)]
+    #[ORM\Column(length: 50, unique: true)]
     private ?string $symbol = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $logo = null;
 
     public function getId(): ?int
     {
@@ -42,6 +46,18 @@ class Asset
     public function setSymbol(string $symbol): static
     {
         $this->symbol = $symbol;
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): static
+    {
+        $this->logo = $logo;
+
         return $this;
     }
 }
